@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Smart Task Analyzer</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Smart Task Analyzer</h1>
+
+    <section class="input-section">
+      <h2>Add Task</h2>
+      <form id="task-form">
+        <div class="field">
+          <label>Title</label>
+          <input type="text" id="title" required />
+        </div>
+        <div class="field">
+          <label>Due Date</label>
+          <input type="date" id="due_date" />
+        </div>
+        <div class="field">
+          <label>Estimated Hours</label>
+          <input type="number" id="estimated_hours" min="0" step="0.5" />
+        </div>
+        <div class="field">
+          <label>Importance (1-10)</label>
+          <input type="number" id="importance" min="1" max="10" />
+        </div>
+        <div class="field">
+          <label>Dependencies (comma-separated IDs)</label>
+          <input type="text" id="dependencies" placeholder="e.g. 1,2" />
+        </div>
+        <button type="submit">Add Task</button>
+      </form>
+
+      <h3>Or Paste JSON Array of Tasks</h3>
+      <textarea id="json-input" placeholder='[{"title": "...", "due_date": "...", ...}]'></textarea>
+
+      <div class="field strategy-field">
+        <label>Strategy</label>
+        <select id="strategy">
+          <option value="smart_balance">Smart Balance</option>
+          <option value="fastest_wins">Fastest Wins</option>
+          <option value="high_impact">High Impact</option>
+          <option value="deadline_driven">Deadline Driven</option>
+        </select>
+      </div>
+
+      <div class="buttons">
+        <button id="analyze-btn">Analyze Tasks</button>
+        <button id="suggest-btn">Suggest Top 3</button>
+      </div>
+
+      <div id="error" class="message error hidden"></div>
+      <div id="status" class="message status hidden"></div>
+    </section>
+
+    <section class="output-section">
+      <h2>Results</h2>
+      <div id="tasks-list"></div>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
